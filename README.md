@@ -11,6 +11,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Deploy
-
+This project was deployed in Netlify, link below
 You can visit the next url for a preview of this project 👉
 [MemoryApp](https://interview-memory-app.netlify.app/principal/home)
