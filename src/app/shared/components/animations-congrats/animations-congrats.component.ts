@@ -7,6 +7,6 @@ import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular
 })
 export class AnimationsCongratsComponent implements OnInit {
   ngOnInit(): void {
-    // document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
   }
 }

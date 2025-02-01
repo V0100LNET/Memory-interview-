@@ -16,7 +16,7 @@ export class GameComponent implements OnInit {
   cardAnimals: DataAnimals | null = null;
   revealedCards: RevealedCards[] = [];
   matchedCards: Set<string> = new Set();
-  numScoredBad: number = 0;
+  numScoreBad: number = 0;
   numScoreGood: number = 0;
   noContentToDisplay: boolean = false;
   showAnimations: boolean = false;
@@ -38,7 +38,7 @@ export class GameComponent implements OnInit {
   }
 
   get scoreBad(): number | string{
-    return (this.numScoredBad == 0) ? "- - -" : this.numScoredBad;
+    return (this.numScoreBad == 0) ? "- - -" : this.numScoreBad;
   }
 
   get scoreGood(): number | string {
@@ -60,7 +60,7 @@ export class GameComponent implements OnInit {
   resetParams(): void {
     this.revealedCards = [];
     this.matchedCards = new Set();
-    this.numScoredBad = 0;
+    this.numScoreBad = 0;
     this.numScoreGood = 0;
     this.noContentToDisplay = false;
   }
@@ -129,7 +129,7 @@ export class GameComponent implements OnInit {
       this.numScoreGood++; 
     }
     else {
-      this.numScoredBad++;
+      this.numScoreBad++;
     } 
 
     setTimeout(() => {
@@ -138,7 +138,7 @@ export class GameComponent implements OnInit {
 
     if (this.matchedCards.size === this.cardAnimals!.entries.length/2) {
       this.showModalFineshed();
-    }
+    }    
   }
 
   reveledCards(index: number): boolean {
