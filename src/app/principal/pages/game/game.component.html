@@ -3,23 +3,20 @@
     <div class="row mt-5">
         <div class="col-6 text-center">
             <h3 class="score-good">Aciertos</h3>
-            <p class="points-good">3</p>
+            <p class="points-good">{{ scoreGood }}</p>
         </div>
         <div class="col-6 text-center">
             <h3 class="score-bad">Errores</h3>
-            <p class="points-bad">7</p>
+            <p class="points-bad">{{ scoreBad }}</p>
         </div>
     </div>
-    <!-- <div class="game__content-pictures">
-        <app-card-animals [dataAnimal]="animal" *ngFor="let animal of cardAnimals?.entries"></app-card-animals>
-    </div> -->
     <div class="game__content-pictures">
-        <app-card-animals 
-        *ngFor="let animal of cardAnimals?.entries; let i = index"
-        [dataAnimal]="animal" 
-        [isRevealed]="reveledCards(i)"
-        [isMatched]="matchedCards.has(animal.meta.uuid)"
-        (cardClicked)="onClickCard(animal.meta.uuid, i)">
+        <h2 *ngIf="noContentToDisplay" class="text-center">No hay cartas para mostrar</h2>
+        <app-card-animals *ngFor="let animal of cardAnimals?.entries; let i = index"
+                          [dataAnimal]="animal" 
+                          [isRevealed]="reveledCards(i)"
+                          [isMatched]="matchedCards.has(animal.meta.uuid)"
+                          (cardClicked)="onClickCard(animal.meta.uuid, i)">
         </app-card-animals>
       </div>
 </section>

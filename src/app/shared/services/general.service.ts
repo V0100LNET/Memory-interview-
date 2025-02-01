@@ -6,15 +6,9 @@ import { CurrentCardVisible } from '../interfaces/general.interface';
 })
 export class GeneralService {
   private showSpinnerGlobal: boolean = false;
-  propCardVisible:string[] = [];
-  numbersImageVisible: number = 0;
 
   get showSpinner(): boolean {
     return this.showSpinnerGlobal;
-  }
-
-  get cardVisible(): string[] {
-    return this.propCardVisible;
   }
 
   set setSpinnerValue(value: boolean) {
@@ -28,6 +22,4 @@ export class GeneralService {
 
     setTimeout(() => this.showSpinnerGlobal = value);
   }
-
-  constructor() { }
 }

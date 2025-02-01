@@ -1,22 +1,8 @@
-<!-- <div class="content-card" 
-     (click)="onClickCard()">
-    <img class="image-card" 
-         [src]="dataAnimal.fields.image.url" 
-         [alt]="dataAnimal.meta.space"
-         [id]="dataAnimal.meta.uuid"
-         [ngClass]="rotateImage ? 'rotate-img ' : ''">
-    <img class="image-pokebola" 
-         src="assets/img/pokebola-color.png" 
-         alt="Image pokebola"
-         [id]="dataAnimal.meta.uuid + 'poke'"
-         [ngClass]="hiddenPokeImg ? 'opacity' : ''">
-</div> -->
 
-<p style="color: white;">{{ dataAnimal.meta.name }}</p>
 <div class="content-card" (click)="onClick()">
     <img *ngIf="!isRevealed && !isMatched" class="image-pokebola" src="assets/img/pokebola-color.png" alt="Image pokebola">
     <img *ngIf="isRevealed" class="image-card" [src]="dataAnimal.fields.image.url" [alt]="dataAnimal.meta.space">
-  </div>
+</div>
   
   
   

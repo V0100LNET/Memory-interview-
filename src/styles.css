@@ -13,13 +13,13 @@
 }
 
 body { 
-    font-family: "Joti One", serif !important;
+    font-family: "Bangers", serif !important;
     background-image: linear-gradient(to right, #030637, #3C0753, #720455);
 
 }
 
-h1, h2, h3, h4, h4, p, ul {
-    font-family: "Joti One", serif !important;
+h1, h2, h3, h4, h4, p, ul, button {
+    font-family: "Bangers", serif !important;
 }
 
 [hidden] {
@@ -52,8 +52,11 @@ h1, h2, h3, h4, h4, p, ul {
     padding: 5px 24px !important;
 }
 
-
-  
+@media screen and (max-width: 1000px) {
+    .modal-width {
+        width: 100vw !important;
+    }
+}
 
 @media screen and (max-width: 768px) {
     .modal-width {

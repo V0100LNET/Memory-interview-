@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ModalFinishedComponent } from 'src/app/shared/components/modal-finished/modal-finished.component';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
-import { DataAnimals } from 'src/app/shared/interfaces/game.interface';
+import { DataAnimals, RevealedCards } from 'src/app/shared/interfaces/game.interface';
 import { GameService } from 'src/app/shared/services/game.service';
 import { GeneralService } from 'src/app/shared/services/general.service';
 
@@ -12,18 +14,20 @@ import { GeneralService } from 'src/app/shared/services/general.service';
 })
 export class GameComponent implements OnInit {
   cardAnimals: DataAnimals | null = null;
-  revealedCards: any[] = [];
+  revealedCards: RevealedCards[] = [];
   matchedCards: Set<string> = new Set();
-  isGameComplete: boolean = false;
+  numScoredBad: number = 0;
+  numScoreGood: number = 0;
+  noContentToDisplay: boolean = false;
 
   constructor(
     private matDialog: MatDialog,
     private generalService: GeneralService,
-    private gameService: GameService
+    private gameService: GameService,
+    private router: Router
   ){}
 
   ngOnInit(): void {
-    // this.showModal();
     this.showSpinner();
     this.getDataAnimals();
   }
@@ -32,13 +36,35 @@ export class GameComponent implements OnInit {
     return localStorage.getItem("playerName") ?? null;
   }
 
+  get scoreBad(): number | string{
+    return (this.numScoredBad == 0) ? "- - -" : this.numScoredBad;
+  }
+
+  get scoreGood(): number | string {
+    return (this.numScoreGood == 0) ? "- - -" : this.numScoreGood;
+  }
+
   getDataAnimals(): void {
     this.gameService.getDataAnimal().subscribe((response: DataAnimals) => {      
+      if(!response) {
+        this.noContentToDisplay = true;
+        return;
+      }
+
       this.cardAnimals = response;
+      this.noContentToDisplay = false;
     })
   }
+
+  resetParams(): void {
+    this.revealedCards = [];
+    this.matchedCards = new Set();
+    this.numScoredBad = 0;
+    this.numScoreGood = 0;
+    this.noContentToDisplay = false;
+  }
   
-  showModal(): void {
+  showModalStart(): void {
     const dialog = this.matDialog.open(ModalComponent, {
       disableClose: true,
       data: false,
@@ -49,49 +75,61 @@ export class GameComponent implements OnInit {
       this.getDataAnimals();
     })
   }
+
+  showModalFineshed(): void {
+    const dialog = this.matDialog.open(ModalFinishedComponent, {
+      disableClose: true,
+      data: false,
+      panelClass: 'modal-width'
+    })
+
+    dialog.afterClosed().subscribe(close => {
+      if(close == 'back') {
+        this.router.navigateByUrl("principal/home");
+      }
+
+      if(close == 'restart') {
+        this.resetParams()
+      }
+    })
+  }
   
   showSpinner(): void {
     setTimeout(() => {
       this.generalService.setSpinnerValue = false;
-    },2500)
+      this.showModalStart();
+    },1500)
   }
 
-  // Lógica para manejar el clic en una carta
   onClickCard(cardId: string, cardIndex: number) {    
-    // Solo permitir el clic si la carta no está emparejada
-    if (this.matchedCards.has(cardId) || this.revealedCards.length >= 2) {
-      console.log('ya tiene pareja');
-      
-      return; // No hacemos nada si ya es un par emparejado o si ya hay dos cartas reveladas
+    if(this.matchedCards.has(cardId) || this.revealedCards.length == 2) {
+      return;
     }
 
-    // Revelar la carta
     this.revealedCards.push({ cardId, cardIndex });
 
-    // Si tenemos dos cartas reveladas, las comparamos
     if (this.revealedCards.length === 2) {
       this.checkMatch();
     }
   }
 
-  // Lógica para verificar si las dos cartas reveladas son iguales
   checkMatch() {
-    const [firstCard, secondCard] = this.revealedCards;
+    const [firstCard, secondCard]: RevealedCards[] = this.revealedCards;
 
-    // Verificar si las cartas coinciden
     if (firstCard.cardId === secondCard.cardId) {
-      this.matchedCards.add(firstCard.cardId);  // Agregar el id a las parejas encontradas
+      this.matchedCards.add(firstCard.cardId);
+      this.numScoreGood++; 
+    }
+    else {
+      this.numScoredBad++;
     } 
 
     setTimeout(() => {
-      this.revealedCards = [];  // Ocultar las cartas
+      this.revealedCards = [];
     }, 1000);
 
-    // Revisar si se completaron todas las parejas
-    if (this.matchedCards.size === this.cardAnimals!.entries.length / 2) {
-      this.isGameComplete = true;  // El juego ha terminado
-      console.log('terminado');
-      
+    if (this.matchedCards.size === this.cardAnimals!.entries.length/2) {
+      this.showModalFineshed();
     }
   }
 

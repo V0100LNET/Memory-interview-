@@ -4,6 +4,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { MaterialModule } from '../material/material.module';
 import { CardAnimalsComponent } from './components/card-animals/card-animals.component';
+import { ModalFinishedComponent } from './components/modal-finished/modal-finished.component';
 
 
 
@@ -11,7 +12,8 @@ import { CardAnimalsComponent } from './components/card-animals/card-animals.com
   declarations: [
     SpinnerComponent,
     ModalComponent,
-    CardAnimalsComponent
+    CardAnimalsComponent,
+    ModalFinishedComponent
   ],
   imports: [
     CommonModule,

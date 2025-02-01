@@ -38,3 +38,8 @@ export interface Image {
     alt_text:     null;
     description:  null;
 }
+
+export interface RevealedCards {
+    cardId: string
+    cardIndex: number
+}

@@ -11,7 +11,6 @@
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 10px;
-    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
 }
 
 .image-pokebola {
@@ -43,4 +42,11 @@
 .opacity {
     display: none;
     transition: 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+    .content-card, .image-pokebola  {
+        width: 150px;
+        height: 150px;
+    }   
 }

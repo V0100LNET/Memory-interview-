@@ -38,3 +38,19 @@
     margin-bottom: 10px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+
+@media screen and (max-width: 768px) {
+    .game .game__content-pictures {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    }
+
+    .game .score-good,
+    .game .score-bad {
+        font-size: 1.8rem;
+    }
+
+    .game .points-good,
+    .game .points-bad {
+        font-size: 1rem;
+    }
+}
