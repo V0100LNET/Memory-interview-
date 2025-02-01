@@ -7,7 +7,7 @@ import { DataAnimals, Entry } from '../interfaces/game.interface';
   providedIn: 'root'
 })
 export class GameService {
-  private urlData: string = "https://fed-team.modyo.cloud/api/content/spaces/animals/types/game/entries?per_page=10";
+  private urlData: string = "https://fed-team.modyo.cloud/api/content/spaces/animals/types/game/entries?per_page=2";
 
   constructor(
     private httpClient: HttpClient

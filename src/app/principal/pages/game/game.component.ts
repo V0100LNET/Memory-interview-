@@ -12,6 +12,9 @@ import { GeneralService } from 'src/app/shared/services/general.service';
 })
 export class GameComponent implements OnInit {
   cardAnimals: DataAnimals | null = null;
+  revealedCards: any[] = [];
+  matchedCards: Set<string> = new Set();
+  isGameComplete: boolean = false;
 
   constructor(
     private matDialog: MatDialog,
@@ -52,4 +55,49 @@ export class GameComponent implements OnInit {
       this.generalService.setSpinnerValue = false;
     },2500)
   }
+
+  // Lógica para manejar el clic en una carta
+  onClickCard(cardId: string, cardIndex: number) {    
+    // Solo permitir el clic si la carta no está emparejada
+    if (this.matchedCards.has(cardId) || this.revealedCards.length >= 2) {
+      console.log('ya tiene pareja');
+      
+      return; // No hacemos nada si ya es un par emparejado o si ya hay dos cartas reveladas
+    }
+
+    // Revelar la carta
+    this.revealedCards.push({ cardId, cardIndex });
+
+    // Si tenemos dos cartas reveladas, las comparamos
+    if (this.revealedCards.length === 2) {
+      this.checkMatch();
+    }
+  }
+
+  // Lógica para verificar si las dos cartas reveladas son iguales
+  checkMatch() {
+    const [firstCard, secondCard] = this.revealedCards;
+
+    // Verificar si las cartas coinciden
+    if (firstCard.cardId === secondCard.cardId) {
+      this.matchedCards.add(firstCard.cardId);  // Agregar el id a las parejas encontradas
+    } 
+
+    setTimeout(() => {
+      this.revealedCards = [];  // Ocultar las cartas
+    }, 1000);
+
+    // Revisar si se completaron todas las parejas
+    if (this.matchedCards.size === this.cardAnimals!.entries.length / 2) {
+      this.isGameComplete = true;  // El juego ha terminado
+      console.log('terminado');
+      
+    }
+  }
+
+  reveledCards(index: number): boolean {
+    return this.revealedCards.some(card => card.cardIndex === index) ||
+           this.matchedCards.has(this.cardAnimals!.entries[index].meta.uuid);
+  }
+  
 }

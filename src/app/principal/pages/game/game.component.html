@@ -10,7 +10,16 @@
             <p class="points-bad">7</p>
         </div>
     </div>
-    <div class="game__content-pictures">
+    <!-- <div class="game__content-pictures">
         <app-card-animals [dataAnimal]="animal" *ngFor="let animal of cardAnimals?.entries"></app-card-animals>
-    </div>
+    </div> -->
+    <div class="game__content-pictures">
+        <app-card-animals 
+        *ngFor="let animal of cardAnimals?.entries; let i = index"
+        [dataAnimal]="animal" 
+        [isRevealed]="reveledCards(i)"
+        [isMatched]="matchedCards.has(animal.meta.uuid)"
+        (cardClicked)="onClickCard(animal.meta.uuid, i)">
+        </app-card-animals>
+      </div>
 </section>

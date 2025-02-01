@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Entry } from '../../interfaces/game.interface';
 import { GeneralService } from '../../services/general.service';
 
@@ -9,6 +9,10 @@ import { GeneralService } from '../../services/general.service';
 })
 export class CardAnimalsComponent implements OnInit {
   @Input() dataAnimal!: Entry;
+  @Input() isRevealed: boolean = false;  // Si la carta está revelada
+  @Input() isMatched: boolean = false;  // Si la carta ya está emparejada
+  @Output() cardClicked = new EventEmitter<void>();  // Evento para notificar que se hizo clic
+
 
   rotateImage: boolean = false;
   hiddenPokeImg: boolean = false;
@@ -61,4 +65,14 @@ export class CardAnimalsComponent implements OnInit {
     this.generalService.numbersImageVisible++;
     this.checkSameId();
   }
+
+  onClick() {
+    
+    // Solo permitir el clic si la carta no está emparejada
+    if (!this.isMatched) {
+      
+      this.cardClicked.emit();  // Emitir evento para que el componente padre maneje el clic
+    }
+  }
+
 }
