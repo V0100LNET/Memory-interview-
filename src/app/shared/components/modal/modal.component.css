@@ -1,0 +1,21 @@
+.font-fun {
+    font-weight: bold;
+}
+
+.content__dialog-title {
+    padding: 0 25px;
+}
+
+.content__dialog-title .title {
+    font-size: 1.4rem !important;
+    color: var(--color-theme-principal) !important;
+    border-bottom: 3px solid var(--color-theme-principal);
+    text-align: left;
+}
+
+.content__dialog-buttons {
+    padding: 15px 25px !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+}

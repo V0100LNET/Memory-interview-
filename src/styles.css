@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --color-theme-principal: #322e85;
+}
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+body { 
+    font-family: "Joti One", serif !important;
+    background-image: linear-gradient(to right, #030637, #3C0753, #720455);
+
+}
+
+h1, h2, h3, h4, h4, p, ul {
+    font-family: "Joti One", serif !important;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.modal-width {
+    width: 43vw !important;
+}
+
+.btn-blue { 
+    font-size: 0.9rem;
+    width: auto;
+    background-color: var(--color-theme-principal) !important;
+    color: white !important;
+}
+
+/*padding tittle modal*/
+.mdc-dialog__title {
+    padding: 0 !important;
+}
+
+/*top modal*/
+.cdk-global-overlay-wrapper {
+    margin-top: -100px;
+}
+
+/*padding modal*/
+.mdc-dialog .mdc-dialog__content {
+    padding: 5px 24px !important;
+}
+
+
+  
+
+@media screen and (max-width: 768px) {
+    .modal-width {
+        width: 100vw !important;
+    }
+}

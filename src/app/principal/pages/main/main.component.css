@@ -1,0 +1,28 @@
+.bg-image {
+    background-image: url("../../../../assets/img/bg-image1.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%; 
+    z-index: -1;
+}
+
+.bg-dark {
+    width: 100%;
+    min-height: 100%; 
+    background-image: linear-gradient(to right, #030637, #3C0753, #720455);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 0.9;
+    z-index: -1;
+}
+

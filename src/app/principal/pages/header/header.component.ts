@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-
+  get getNamePlayer(): string {
+    return localStorage.getItem("playerName") ?? "- - -";
+  }
 }

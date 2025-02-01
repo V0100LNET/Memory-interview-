@@ -1,0 +1,28 @@
+<div class="content__dialog-title">
+    <h1 class="title" mat-dialog-title>
+        Instrucciones
+    </h1>
+</div>
+<mat-dialog-content class="content__dialog-info">
+    <section>
+        <h2>¿Cómo jugar al Memorama?</h2>
+        <p>El objetivo del juego es encontrar las parejas de cartas que son iguales.</p>
+        <ul>
+          <li>Se te mostrarán cartas con imágenes al azar en el tablero.</li>
+          <li>Haz clic en una carta para darle la vuelta y revelar la imagen.</li>
+          <li>Luego, haz clic en otra carta para ver si las imágenes coinciden.</li>
+          <li>Si las cartas coinciden, permanecerán volteadas. Si no, se voltearán nuevamente.</li>
+          <li>El juego termina cuando todas las cartas están emparejadas.</li>
+        </ul>
+        <p class="font-fun">¡Diviértete y encuentra todas las parejas lo más rápido posible!</p>
+    </section>
+</mat-dialog-content>
+<mat-dialog-actions class="content__dialog-buttons">
+    <button mat-raised-button
+            mat-dialog-close 
+            type="submit" 
+            class="btn-blue"
+            (click)="closeModal()">
+        Comenza a jugar
+    </button>
+</mat-dialog-actions>

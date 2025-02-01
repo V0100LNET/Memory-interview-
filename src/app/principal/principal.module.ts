@@ -7,6 +7,7 @@ import { MainComponent } from './pages/main/main.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { PrincipalRoutingModule } from './principal-routing.module';
+import { MaterialModule } from '../material/material.module';
 
 
 
@@ -21,7 +22,8 @@ import { PrincipalRoutingModule } from './principal-routing.module';
     CommonModule,
     PrincipalRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class PrincipalModule { }

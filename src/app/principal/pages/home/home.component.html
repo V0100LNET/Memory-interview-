@@ -1,1 +1,15 @@
-<p>home works!</p>
+
+<div class="home container">
+    <form class="info" [formGroup]="form">
+        <h1 class="info-title">Memorama <span>ANIMALES</span></h1>
+        <input class="info-name" 
+               type="text" 
+               placeholder="Ingresa tu nombre"
+               formControlName="name"
+               autocomplete="off"
+               required>
+        <mat-error class="error-input" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">Campo requerido</mat-error>
+        <button class="play-btn" type="submit" (click)="sendName()">jugar</button>
+        <img class="pikachu" src="/assets/gif/pikachu" alt="pikachu">
+    </form>
+</div>

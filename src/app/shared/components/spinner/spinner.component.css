@@ -1,0 +1,50 @@
+.content-spinner {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    opacity: 0.2;
+}
+
+
+.loader {
+    position: absolute;
+    border: 50px solid;
+    top: 40%;
+    left: 48%;
+    border-color: #030637  transparent #030637 transparent;
+    animation : rotate 2s linear infinite;
+}
+
+.loader:before,
+.loader:after {
+    content:"";
+    display: block;
+    border: 50px solid transparent;
+    border-left-color: #030637;
+    position: absolute;
+    left: -50px;
+    top: -50px;
+    animation: prix 1s infinite ease-in;
+    transform-origin: 0% 100%;
+}
+
+.loader:before {
+    border-color: transparent #030637 transparent transparent;
+    transform-origin: 100% 0%;
+    animation-delay: 0.5s;
+}
+
+@keyframes rotate {
+    100% {transform: rotate(360deg)}
+}
+
+@keyframes prix {
+    20% , 80% {transform: rotate(0)}
+    50% {transform: rotate(-90deg)}
+}
