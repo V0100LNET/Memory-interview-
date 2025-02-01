@@ -15,7 +15,6 @@
 body { 
     font-family: "Bangers", serif !important;
     background-image: linear-gradient(to right, #030637, #3C0753, #720455);
-
 }
 
 h1, h2, h3, h4, h4, p, ul, button {
@@ -44,7 +43,7 @@ h1, h2, h3, h4, h4, p, ul, button {
 
 /*top modal*/
 .cdk-global-overlay-wrapper {
-    margin-top: -100px;
+    margin-top: -50px;
 }
 
 /*padding modal*/

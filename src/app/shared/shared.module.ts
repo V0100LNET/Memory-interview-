@@ -5,6 +5,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { MaterialModule } from '../material/material.module';
 import { CardAnimalsComponent } from './components/card-animals/card-animals.component';
 import { ModalFinishedComponent } from './components/modal-finished/modal-finished.component';
+import { AnimationsCongratsComponent } from './components/animations-congrats/animations-congrats.component';
 
 
 
@@ -13,7 +14,8 @@ import { ModalFinishedComponent } from './components/modal-finished/modal-finish
     SpinnerComponent,
     ModalComponent,
     CardAnimalsComponent,
-    ModalFinishedComponent
+    ModalFinishedComponent,
+    AnimationsCongratsComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { ModalFinishedComponent } from './components/modal-finished/modal-finish
   ],
   exports: [
     SpinnerComponent,
-    CardAnimalsComponent
+    CardAnimalsComponent,
+    AnimationsCongratsComponent
   ]
 })
 export class SharedModule { }

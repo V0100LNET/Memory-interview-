@@ -16,7 +16,7 @@
 .info {
     position: relative;
     background-color: white;
-    max-width: 450px;
+    max-width: 500px;
     min-height: 400;
     width: 100%;
     border-radius: 10px;
@@ -39,7 +39,7 @@
 }
 
 .info .info-name {
-    font-size: 1rem;
+    font-size: 1.3rem;
     margin-top: 20px;
     border-radius: 5px;
     padding: 15px 10px;

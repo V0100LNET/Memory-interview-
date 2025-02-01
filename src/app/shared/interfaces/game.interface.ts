@@ -43,3 +43,8 @@ export interface RevealedCards {
     cardId: string
     cardIndex: number
 }
+
+export interface ScorePlayer {
+    scoreGood: number | string
+    scoreBad: number | string
+}

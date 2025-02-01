@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { ModalFinishedComponent } from 'src/app/shared/components/modal-finished/modal-finished.component';
+import { DataAnimals, RevealedCards, ScorePlayer } from 'src/app/shared/interfaces/game.interface';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
-import { DataAnimals, RevealedCards } from 'src/app/shared/interfaces/game.interface';
-import { GameService } from 'src/app/shared/services/game.service';
 import { GeneralService } from 'src/app/shared/services/general.service';
+import { GameService } from 'src/app/shared/services/game.service';
+import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -19,6 +19,7 @@ export class GameComponent implements OnInit {
   numScoredBad: number = 0;
   numScoreGood: number = 0;
   noContentToDisplay: boolean = false;
+  showAnimations: boolean = false;
 
   constructor(
     private matDialog: MatDialog,
@@ -63,6 +64,10 @@ export class GameComponent implements OnInit {
     this.numScoreGood = 0;
     this.noContentToDisplay = false;
   }
+
+  removeClass(): void {
+    document.body.style.overflow = "visible";
+  }
   
   showModalStart(): void {
     const dialog = this.matDialog.open(ModalComponent, {
@@ -70,26 +75,29 @@ export class GameComponent implements OnInit {
       data: false,
       panelClass: 'modal-width'
     })
-
-    dialog.afterClosed().subscribe(close => {
-      this.getDataAnimals();
-    })
   }
 
   showModalFineshed(): void {
+    this.showAnimations = true;
+    let score: ScorePlayer = { scoreBad: this.scoreBad, scoreGood: this.scoreGood }    
+
     const dialog = this.matDialog.open(ModalFinishedComponent, {
       disableClose: true,
-      data: false,
-      panelClass: 'modal-width'
+      data: score,
     })
 
     dialog.afterClosed().subscribe(close => {
       if(close == 'back') {
+        this.removeClass();
         this.router.navigateByUrl("principal/home");
+        this.showAnimations = false;
       }
 
       if(close == 'restart') {
-        this.resetParams()
+        this.removeClass();
+        this.resetParams();
+        this.showAnimations = false;
+        this.getDataAnimals();
       }
     })
   }
@@ -101,7 +109,7 @@ export class GameComponent implements OnInit {
     },1500)
   }
 
-  onClickCard(cardId: string, cardIndex: number) {    
+  onClickCard(cardId: string, cardIndex: number) {       
     if(this.matchedCards.has(cardId) || this.revealedCards.length == 2) {
       return;
     }
