@@ -48,3 +48,9 @@
     20% , 80% {transform: rotate(0)}
     50% {transform: rotate(-90deg)}
 }
+
+@media screen and (max-width: 768px) {
+    .loader {
+        left: 38%;
+    }
+}

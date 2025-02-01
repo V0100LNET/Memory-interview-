@@ -22,7 +22,6 @@
 
 @media screen and (max-width: 425px) {
     .content__dialog-info section {
-        min-width: 350px;
         width: 100%;
         overflow-x: auto;
     }

@@ -104,8 +104,8 @@ export class GameComponent implements OnInit {
   
   showSpinner(): void {
     setTimeout(() => {
-      this.generalService.setSpinnerValue = false;
       this.showModalStart();
+      this.generalService.setSpinnerValue = false;
     },1500)
   }
 
