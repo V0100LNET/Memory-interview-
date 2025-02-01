@@ -13,4 +13,4 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Deploy
 
 You can visit the next url for a preview of this project 👉
-[MemoryApp](https://interview-branchbit.netlify.app/principal/biometrics)
+[MemoryApp](https://interview-memory-app.netlify.app/principal/home)
